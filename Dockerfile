@@ -10,6 +10,12 @@ ENV DATASOURCE_URL=jdbc:postgresql://localhost:5432/db
 ENV DATASOURCE_USERNAME=postgres
 ENV DATASOURCE_PASSWORD=&insert312
 
+# Navegando para o diretório do projeto
+WORKDIR /usr/src/app
+
+# Construindo o projeto com o Maven
+RUN mvn package
+
 # Expondo a porta da APP
 EXPOSE 8000
 
