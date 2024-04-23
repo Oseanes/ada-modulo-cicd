@@ -3,7 +3,7 @@ FROM eclipse-temurin:21-jdk
 # Copiando os arquivos do projeto para o diretório usr/src/app
 COPY . /usr/src/app
 
-RUN apt-get install maven
+RUN apt-get -y install maven
 
 # Construindo o projeto com o Maven
 RUN mvn install
