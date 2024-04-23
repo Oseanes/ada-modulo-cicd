@@ -3,10 +3,13 @@ FROM eclipse-temurin:21-jdk
 # Copiando os arquivos do projeto para o diretório usr/src/app
 COPY . /usr/src/app
 
-# Atualizando, instalando dependências e construindo o projeto com o Maven
+# Atualizando, instalando dependências e limpando as listas do apt-get
 RUN apt-get update && \
     apt-get -y install --no-install-recommends maven=3.9.6 && \
-    mvn install
+    rm -rf /var/lib/apt/lists/*
+
+# Construindo o projeto com o Maven
+RUN mvn install
 
 # Expondo a porta da APP
 EXPOSE 8000
