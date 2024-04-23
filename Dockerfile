@@ -17,13 +17,13 @@ ARG MAVEN_VERSION=3.9.6
 ARG USER_HOME_DIR="/root"
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
+# Copiando os arquivos do projeto para o diretório usr/src/app
 COPY . /usr/src/app
 
 # Construindo o projeto com o Maven
 RUN mvn install
 
-# Expondo a porta da APP
-EXPOSE 8000
+ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 
 # Executando o arquivo jar
 CMD ["java", "-jar", "target/api-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
