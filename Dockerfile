@@ -14,7 +14,7 @@ ENV DATASOURCE_PASSWORD=&insert312
 WORKDIR /usr/src/app
 
 # Construindo o projeto com o Maven
-RUN mvn package
+RUN mvn install
 
 # Expondo a porta da APP
 EXPOSE 8000
