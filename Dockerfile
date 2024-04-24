@@ -5,7 +5,7 @@ COPY . /usr/src/app
 
 # Atualizando, instalando dependências e limpando as listas do apt-get
 RUN apt-get update && \
-    apt-get -y install --no-install-recommends maven=3.6.0 && \
+    apt-get -y install --no-install-recommends maven && \
     rm -rf /var/lib/apt/lists/*
 
 # Construindo o projeto com o Maven
