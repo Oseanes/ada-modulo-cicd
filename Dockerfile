@@ -1,11 +1,17 @@
-FROM eclipse-temurin:21-jdk
+FROM maven:3.8.7-eclipse-temurin-19-alpine
 
-# Atualizando a lista de pacotes e instalando o Maven
-RUN apt-get update && \
-    apt-get install -y maven
+LABEL maintainer="Oseanes Dias de Farias <oseanes.farias@gmail.com>"
 
 # Copiando os arquivos do projeto para o diretório usr/src/app
 COPY . /usr/src/app
+
+# Set environment variables if needed
+ENV DATASOURCE_URL=jdbc:postgresql://localhost:5432/db
+ENV DATASOURCE_USERNAME=postgres
+ENV DATASOURCE_PASSWORD=&insert312
+
+# Navegando para o diretório do projeto
+WORKDIR /usr/src/app
 
 # Construindo o projeto com o Maven
 RUN mvn install
@@ -13,6 +19,5 @@ RUN mvn install
 # Expondo a porta da APP
 EXPOSE 8000
 
-# Executando o arquivo jar
-CMD ["java", "-jar", "target/api-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
-
+# Run the jar file
+CMD ["java", "-jar", "target/myapp-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
