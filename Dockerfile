@@ -20,4 +20,4 @@ RUN mvn clean
 EXPOSE 8000
 
 # Run the jar file
-CMD ["java", "-jar", "target/myapp-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
+CMD ["java", "-jar", "target/api 0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
